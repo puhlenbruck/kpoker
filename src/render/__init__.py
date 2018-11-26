@@ -12,8 +12,8 @@ def init():
 
     global _screen, _cardRenderer, _card_back_image
     _screen = pygame.display.set_mode(size)
-    _cardRenderer = CardRenderer(pygame.image.load("res/default-card.png"))
-    _card_back_image = pygame.image.load("res/default-card-back.png")
+    _cardRenderer = CardRenderer(pygame.image.load("res/default-card.png").convert_alpha())
+    _card_back_image = pygame.image.load("res/default-card-back.png").convert_alpha()
 
 
 def render_screen():

@@ -9,10 +9,10 @@ class CardRenderer:
     def __init__(self, base_image):
         self._card_base = base_image
         self._spade_image = transform.scale(
-            pygame.image.load("res/spade.png"), _icon_size
+            pygame.image.load("res/spade.png").convert_alpha(), _icon_size
         )
         self._heart_image = transform.scale(
-            pygame.image.load("res/heart.png"), _icon_size
+            pygame.image.load("res/heart.png").convert_alpha(), _icon_size
         )
         self._card_font = pygame.font.SysFont("Arial", 30)
         self._icon_vertical_spacing = -5
