@@ -16,6 +16,12 @@ class CardRenderer:
             Suite.HEARTS: transform.scale(
                 pygame.image.load("res/heart.png").convert_alpha(), _icon_size
             ),
+            Suite.DIAMONDS: transform.scale(
+                pygame.image.load("res/diamond.png").convert_alpha(), _icon_size
+            ),
+            Suite.CLUBS: transform.scale(
+                pygame.image.load("res/club.png").convert_alpha(), _icon_size
+            ),
         }
         self._card_font = pygame.font.SysFont("Arial", 30)
         self._icon_vertical_spacing = -5

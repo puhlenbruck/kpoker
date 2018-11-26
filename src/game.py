@@ -1,6 +1,5 @@
 # Poker Game!!!!!!!!!!
 from deck import Deck
-from card import Card, Suite, Value
 
 
 class Hand:
@@ -88,7 +87,6 @@ def deal_hand(deck):
 
 
 def deal_board(deck):
-    global board
     board = []
     deck.deal()  # burning a card
 
@@ -109,6 +107,7 @@ def deal_board(deck):
     board.append(deck.deal())
 
     print("Board after river: {}".format(board))
+    return board
 
 
 def flush_finder(in_cards):
@@ -219,23 +218,21 @@ def read_hand(rem_hands, board):
     return tot_vals, win_hands
 
 
-if __name__ == "__main__":
-    play_n = 1
-    play_flag = True
-    sma_bl = 5
-    big_bl = 10
-    # create our deck and our cards
-    deck = Deck()
+class PokerGame:
+    def __init__(self, num_players):
+        sma_bl = 5
+        big_bl = 10
+        # create our deck and our cards
+        self._num_players = num_players
+        self._deck = Deck()
 
-    # show each person their starting hands
-    hand_of_players = {}
+    def play_round(self):
+        # show each person their starting hands
+        hand_of_players = {}
+        for p in range(1, self._num_players + 1):
+            hand_of_players["Player {}".format(p)] = Hand(deal_hand(self._deck))
 
-    # create a Hand object for each player and insert them in a dictionary so that we can see every player's hand
-    while play_flag:
-        for p in range(1, play_n + 1):
-            hand_of_players["Player {}".format(p)] = Hand(deal_hand(deck))
-
-        deal_board(deck)
+        board = deal_board(self._deck)
         print(hand_of_players["Player 1"]._cards + board)
         play_hands_vals, wins = read_hand(hand_of_players["Player 1"]._cards, board)
         for k, w in wins.items():
@@ -243,4 +240,4 @@ if __name__ == "__main__":
                 print("You have a {}!".format(k))
         print(wins)
         print(play_hands_vals)
-        play_flag = False
+        return [hand_of_players["Player 1"], board]
