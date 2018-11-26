@@ -240,4 +240,4 @@ class PokerGame:
                 print("You have a {}!".format(k))
         print(wins)
         print(play_hands_vals)
-        return [hand_of_players["Player 1"], board]
+        return [hand_of_players["Player 1"]._cards, board]
