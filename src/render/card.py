@@ -1,6 +1,8 @@
 import pygame
 from pygame import Surface, transform
+
 from card import Value, Suite
+from render import color
 
 _icon_size = _icon_width, _icon_height = (15, 20)
 _icon_position = _icon_position_x, _icon_position_y = (10, 5)
@@ -50,7 +52,7 @@ class CardRenderer:
         )
         suite_icon_offset = (required_surface_size[0] - _icon_width) / 2
         icon_surface = Surface(required_surface_size, pygame.SRCALPHA, 32)
-        value_icon = self._card_font.render(value, True, (0, 0, 0))
+        value_icon = self._card_font.render(value, True, suite_color(suite))
         suite_icon = self._suite_icons[suite]
         icon_surface.blit(value_icon, (0, 0))
         icon_surface.blit(
@@ -58,6 +60,13 @@ class CardRenderer:
             (suite_icon_offset, value_icon.get_height() + self._icon_vertical_spacing),
         )
         return icon_surface
+
+
+def suite_color(suite):
+    if suite == Suite.HEARTS or suite == Suite.DIAMONDS:
+        return color.RED
+    else:
+        return color.BLACK
 
 
 def card_display_value(card):

@@ -1,9 +1,9 @@
 import pygame
 from pygame import Surface
-from render.card import CardRenderer
-from card import Card, Suite, Value
 
-_black = 0, 0, 0
+import render.color
+from render.card import CardRenderer
+
 _screen: Surface = None
 _cardRenderer: CardRenderer = None
 _card_back_image: Surface = None
@@ -27,7 +27,7 @@ def init():
 
 
 def render_screen(hand, board):
-    _screen.fill(_black)
+    _screen.fill(color.BLACK)
     _screen.blit(render_board(board), board_position())
     _screen.blit(render_hand(hand), hand_position())
     pygame.display.flip()
