@@ -1,27 +1,23 @@
-import sys, pygame
+import pygame
+import sys
 
-pygame.init()
+import render
 
-size = width, height = 320, 240
-speed = [2, 2]
-black = 0, 0, 0
 
-screen = pygame.display.set_mode(size)
+def run():
+    clock = pygame.time.Clock()
+    while 1:
+        clock.tick(30)
 
-ball = pygame.image.load("intro_ball.gif")
-ballrect = ball.get_rect()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+        start = pygame.time.get_ticks()
+        render.render_screen()
+        print("rendered in {}ms".format(pygame.time.get_ticks() - start))
 
-while 1:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            sys.exit()
 
-    ballrect = ballrect.move(speed)
-    if ballrect.left < 0 or ballrect.right > width:
-        speed[0] = -speed[0]
-    if ballrect.top < 0 or ballrect.bottom > height:
-        speed[1] = -speed[1]
-
-    screen.fill(black)
-    screen.blit(ball, ballrect)
-    pygame.display.flip()
+if __name__ == "__main__":
+    pygame.init()
+    render.init()
+    run()
