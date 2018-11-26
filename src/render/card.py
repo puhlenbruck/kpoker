@@ -6,8 +6,8 @@ _icon_position = _icon_position_x, _icon_position_y = (10, 5)
 
 
 class CardRenderer:
-    def __init__(self):
-        self._card_base = pygame.image.load("res/default-card.png")
+    def __init__(self, base_image):
+        self._card_base = base_image
         self._spade_image = transform.scale(
             pygame.image.load("res/spade.png"), _icon_size
         )
